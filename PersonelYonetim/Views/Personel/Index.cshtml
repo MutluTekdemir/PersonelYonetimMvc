@@ -1,0 +1,51 @@
+﻿@using PersonelYonetim.Models.Entity
+@using PersonelYonetim.View_Modal;
+@model Modellerim
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-success" href="/Personel/Yeni">Yeni Personel</a>
+
+<h2>Personel Listesi</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            @*<td>ID</td>*@
+            <td>Ad</td>
+            <td>Soyad</td>
+            <td>Departman Adı</td>
+            <td>Yaş</td>
+            <td>Maaş</td>
+            <td>Doğumtarihi</td>
+            <td>Cinsiyet</td>
+            <td>Evlilik Durumu</td>
+            <td>Guncelle</td>
+            <td>Sil</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Personel xx in Model.PersonelModeli.Personeller)
+        {
+            <tr>
+                @*<td>@personel.Id</td>*@
+                <td>@xx.Ad</td>
+                <td>@xx.Soyad</td>
+                <td>@xx.Departman.Ad</td>
+                <td>@(DateTime.Now.Year- xx.DogumTarihi.Value.Year)</td> Yaş
+                <td>@xx.DogumTarihi.Value.ToString("dd-MM-yyyy")</td>
+                <td>@(xx.Cinsiyet==true?"Erkek" :"Kadın")</td>
+                <td>@(xx.Evlimi==true?"Evli":"Bekar")</td>
+
+                <td>@Html.ActionLink("Güncelle", "Guncelle", new { id = xx.Id }, new { @class = "btn btn-success" })</td>
+                <td><a class="btn btn-danger" href="/Personel/Sil/@xx.Id">Sil</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

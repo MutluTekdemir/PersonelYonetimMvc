@@ -1,0 +1,33 @@
+﻿@using PersonelYonetim.Models.Entity
+@model   List<Departman>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-success" href="/Depeatman/Yeni">Yeni Departman</a>
+
+<h2>Departman Listesi</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Ad</td>
+            <td>Guncelle</td>
+            <td>Sil</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+            {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Ad</td>
+            <td><a class="btn btn-primary" href="/Depeatman/Guncelle/@item.Id">Guncelle</a></td>
+            <td><a class="btn btn-danger" href="/Depeatman/Sil/@item.Id">Sil</a></td>
+        </tr>
+            }
+    </tbody>
+</table>
+
